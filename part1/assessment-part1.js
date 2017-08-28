@@ -84,7 +84,7 @@ function Vehicle(gasRemaining){
 }
 
 function drive(){
-  return gasRemaining - 25;
+  return gasRemaining - 25;;
 }
 // Create 2 new Vehicles with the constructor function you made: one called "charger",
 // the other called "mustang".  Using implicit context, invoke the drive method on
