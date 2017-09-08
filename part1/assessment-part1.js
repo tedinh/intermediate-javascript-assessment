@@ -7,20 +7,20 @@
 
 // Given the following nested functions:
 
-function daBears(){
+function daBears() {
   var isFurry = true;
 
-  function papaBear (){
+  function papaBear() {
     var porridge = "Too Hot!";
     var chair = "Too Big!";
     var bed = "Too Hard!";
     var feeling = "Angry";
 
-    function mamaBear(){
+    function mamaBear() {
       var porridge = "Too Cold!";
       var bed = "Too Soft!";
 
-      function babyBear(){
+      function babyBear() {
         var porridge = "Just right!";
         var chair = "Just right!";
         var bed = "Just right!";
@@ -30,7 +30,7 @@ function daBears(){
     }
   }
 
-  function goldilocks(){
+  function goldilocks() {
     var feeling = "Hungry";
     var isFurry = false;
     var isDinner = true;
@@ -65,43 +65,40 @@ var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
-
 // *************
 // * PROBLEM 2 *
 // *************
 
 // Write a constructor function called Vehicle.  Vehicle should have a property
 // called gasRemaining that is equal to 100.
-function Vehicle(gasRemaining) {
+var Vehicle = function() {
   this.gasRemaining = 100;
-}
+};
 // Next, assign a function called drive to the Vehicle prototype.  When invoked,
 // drive should subtract 25 from the gasRemaining property of any Vehicle your constructor
 // function creates.
-function Vehicle(gasRemaining){
-  this.gasRemaining = 100;
-  this.drive = drive;
-}
 
-function drive(){
-  return gasRemaining - 25;;
-}
+Vehicle.prototype.drive = function() {
+  this.gasRemaining -= 25;
+};
+
 // Create 2 new Vehicles with the constructor function you made: one called "charger",
 // the other called "mustang".  Using implicit context, invoke the drive method on
 // "charger" once, and invoke it twice on "mustang".
 
 // CODE HERE...
 
-
-
-
+var charger = new Vehicle();
+charger.drive();
+var mustang = new Vehicle();
+mustang.drive();
+mustang.drive();
 
 // -----------------------------------------------------------------------------
 
 // *************
 // * PROBLEM 3 *
 // *************
-
 
 // For this problem, you will need to add a method to the String prototype named
 // "grammarPolice".  When called on a string, "grammarPolice" will return a new string
@@ -113,13 +110,14 @@ function drive(){
 // Your method may be passed punctuation, numbers or other non-letter characters
 // and should neither modify them nor break when encountering them.
 
-
-
-
 // CODE HERE...
-
-
-
+String.prototype.grammarPolice = function() {
+  return this.split(" ")
+    .map(function(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    })
+    .join(" ");
+};
 // *************
 // * PROBLEM 4 *
 // *************
@@ -135,9 +133,16 @@ function drive(){
 // In all other cases, return "Different values"
 
 // CODE HERE...
-
-
-
+var valueType = function(one, two) {
+  if (one === two) {
+    return "Exactly the same";
+  }
+  if (one == two) {
+    return "Same value, different types";
+  } else {
+    return "Different values";
+  }
+};
 // *************
 // * PROBLEM 5 *
 // *************
@@ -150,3 +155,8 @@ function drive(){
 var theAnswer = "Unknown";
 
 // CODE HERE...
+var promiseCatcher = function(x) {
+  x.then(function(val) {
+    theAnswer = val;
+  });
+};
